@@ -60,15 +60,15 @@ describe "Sales analytics", :js, :sidekiq_inline, :elasticsearch_wait_for_refres
 
     it "shows the sales chart" do
       visit sales_dashboard_path(from: "2023-12-01", to: "2023-12-31")
-      expect(page).to have_css(".point", count: 31)
+      expect(page).to have_css('[data-testid="point"]', count: 31)
       expect(page).to have_css("path.bar", count: 5)
 
-      chart = find(".chart")
+      chart = find('[data-testid="chart"]')
       chart.hover
       expect(chart).to have_tooltip(text: "3 views\n1 sale\n(33.3% conversion)\n$5\nSaturday, December 16")
 
       select "Monthly", from: "Aggregate by"
-      expect(page).to have_css(".point", count: 1)
+      expect(page).to have_css('[data-testid="point"]', count: 1)
       expect(page).to have_css("path.bar", count: 2)
       chart.hover
       expect(chart).to have_tooltip(text: "6 views\n4 sales\n(66.7% conversion)\n$12\nDecember 2023")
@@ -87,7 +87,7 @@ describe "Sales analytics", :js, :sidekiq_inline, :elasticsearch_wait_for_refres
       end
       find("body").click # Blur the date field to trigger the update
 
-      expect(page).to have_css(".point", count: 2)
+      expect(page).to have_css('[data-testid="point"]', count: 2)
       expect(page).to have_css("path.bar", count: 2)
     end
 

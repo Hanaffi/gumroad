@@ -29,7 +29,8 @@ export const Chart = ({
   const uid = React.useId();
   return (
     <section
-      className="rounded border border-border bg-background p-6 text-foreground"
+      data-testid="chart"
+      className="border-border bg-background text-foreground rounded border p-6"
       aria-describedby={tooltip ? uid : undefined}
     >
       <div className="relative">
@@ -83,6 +84,7 @@ export const lineProps = (
   isAnimationActive: false,
   dot: ({ key, cx, cy, width }: DotProps) => (
     <circle
+      data-testid="point"
       ref={dotRef}
       key={key}
       cx={cx}
