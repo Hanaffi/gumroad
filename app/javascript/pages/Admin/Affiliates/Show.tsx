@@ -2,8 +2,8 @@ import { usePage } from "@inertiajs/react";
 import React from "react";
 import { cast } from "ts-safe-cast";
 
-import AdminUserAndProductsTabs from "$app/components/Admin/UserAndProductsTabs";
 import UserCard, { type User } from "$app/components/Admin/Users/User";
+import AdminUserTabs from "$app/components/Admin/UserTabs";
 
 type PageProps = {
   user: User;
@@ -14,7 +14,7 @@ const AdminAffiliatesShow = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <AdminUserAndProductsTabs selectedTab="profile" userExternalId={user.external_id} isAffiliateUser />
+      <AdminUserTabs selectedTab="profile" userExternalId={user.external_id} isAffiliateUser />
       <UserCard user={user} isAffiliateUser />
     </div>
   );

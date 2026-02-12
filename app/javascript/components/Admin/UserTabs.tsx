@@ -9,8 +9,8 @@ type Props = {
   isAffiliateUser?: boolean;
 };
 
-const AdminUserAndProductsTabs = ({ selectedTab, userExternalId, isAffiliateUser = false }: Props) => (
-  <Tabs variant="buttons">
+const AdminUserTabs = ({ selectedTab, userExternalId, isAffiliateUser = false }: Props) => (
+  <Tabs variant="pills">
     <Tab isSelected={selectedTab === "profile"} asChild>
       <Link
         href={isAffiliateUser ? Routes.admin_affiliate_path(userExternalId) : Routes.admin_user_path(userExternalId)}
@@ -19,7 +19,12 @@ const AdminUserAndProductsTabs = ({ selectedTab, userExternalId, isAffiliateUser
         Profile
       </Link>
     </Tab>
-    <Tab isSelected={selectedTab === "products"} asChild>
+    <Tab isSelected={selectedTab === "products" && !isAffiliateUser} asChild>
+      <Link href={Routes.admin_user_products_path(userExternalId)} prefetch>
+        Products
+      </Link>
+    </Tab>
+    <Tab isSelected={selectedTab === "collaborations"} asChild>
       <Link
         href={
           isAffiliateUser
@@ -28,10 +33,15 @@ const AdminUserAndProductsTabs = ({ selectedTab, userExternalId, isAffiliateUser
         }
         prefetch
       >
-        Products
+        Collaborations
+      </Link>
+    </Tab>
+    <Tab isSelected={selectedTab === "affiliate_products" && isAffiliateUser} asChild>
+      <Link href={Routes.admin_affiliate_products_path(userExternalId)} prefetch>
+        Affiliate products
       </Link>
     </Tab>
   </Tabs>
 );
 
-export default AdminUserAndProductsTabs;
+export default AdminUserTabs;

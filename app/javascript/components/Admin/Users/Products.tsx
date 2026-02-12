@@ -3,7 +3,7 @@ import React from "react";
 import { cast } from "ts-safe-cast";
 
 import AdminUsersProductsProduct, { type Product as ProductType } from "$app/components/Admin/Products/Product";
-import AdminUserAndProductsTabs from "$app/components/Admin/UserAndProductsTabs";
+import AdminUserTabs from "$app/components/Admin/UserTabs";
 import { Pagination, type PaginationProps } from "$app/components/Pagination";
 import { Alert } from "$app/components/ui/Alert";
 
@@ -51,11 +51,7 @@ const AdminUsersProducts = ({ isAffiliateUser = false }: Props) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <AdminUserAndProductsTabs
-        selectedTab="products"
-        userExternalId={user.external_id}
-        isAffiliateUser={isAffiliateUser}
-      />
+      <AdminUserTabs selectedTab="products" userExternalId={user.external_id} isAffiliateUser={isAffiliateUser} />
       <AdminUsersProductsContent products={products} isAffiliateUser={isAffiliateUser} pagination={pagination} />
       {pagination.pages > 1 && <Pagination pagination={pagination} onChangePage={onChangePage} />}
     </div>
