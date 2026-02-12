@@ -36,6 +36,7 @@ namespace :admin do
           resources :purchases, only: :index
         end
       end
+      resources :collaborations, only: :index
       resources :guids, only: [:index]
     end
     member do

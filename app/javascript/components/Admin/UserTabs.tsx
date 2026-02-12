@@ -25,18 +25,11 @@ const AdminUserTabs = ({ selectedTab, userExternalId, isAffiliateUser = false }:
       </Link>
     </Tab>
     <Tab isSelected={selectedTab === "collaborations"} asChild>
-      <Link
-        href={
-          isAffiliateUser
-            ? Routes.admin_affiliate_products_path(userExternalId)
-            : Routes.admin_user_products_path(userExternalId)
-        }
-        prefetch
-      >
+      <Link href={Routes.admin_user_collaborations_path(userExternalId)} prefetch>
         Collaborations
       </Link>
     </Tab>
-    <Tab isSelected={selectedTab === "affiliate_products" && isAffiliateUser} asChild>
+    <Tab isSelected={selectedTab === "products" && isAffiliateUser} asChild>
       <Link href={Routes.admin_affiliate_products_path(userExternalId)} prefetch>
         Affiliate products
       </Link>
