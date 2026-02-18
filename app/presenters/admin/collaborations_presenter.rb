@@ -24,7 +24,7 @@ class Admin::CollaborationsPresenter
       collaboration_started_at: (product_affiliate&.created_at || collaborator&.created_at)&.iso8601,
       seller: {
         external_id: product.user.external_id,
-        name: product.user.name
+        name: product.user.name_or_username
       },
       sales_count: product.successful_sales_count,
       total_earnings_cents: product.total_usd_cents_earned_by_user(user)
